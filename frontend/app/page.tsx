@@ -57,7 +57,8 @@ export default function HomePage() {
     formData.append('file', file);
 
     try {
-      const response = await fetch('http://localhost:8000/remove-background/', {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+      const response = await fetch(`${apiUrl}/remove-background/`, {
         method: 'POST',
         body: formData,
       });
@@ -143,8 +144,6 @@ export default function HomePage() {
               {isLoading && <div className="border-4 border-slate-400 border-t-rose-500 rounded-full w-16 h-16 animate-spin"></div>}
               {error && <p className="text-center text-red-400">{error}</p>}
               {processedImage && (
-                // PERBAIKAN: Menambahkan komentar untuk menghilangkan peringatan
-                // eslint-disable-next-line @next/next/no-img-element
                 <img ref={finalImageRef} src={processedImage} alt="Processed" className="max-h-full max-w-full object-contain" />
               )}
             </div>

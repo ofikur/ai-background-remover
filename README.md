@@ -1,6 +1,6 @@
 # VanishBG - AI Background Remover v1.0
 
-![VanishBG Showcase](screenshot/vanishBg.jpg)
+![VanishBG Showcase](screenshot/VanishBg.jpg)
 
 VanishBG adalah sebuah aplikasi web modern yang memungkinkan pengguna untuk menghapus latar belakang dari gambar secara otomatis menggunakan kekuatan AI. Proyek ini dibangun dengan antarmuka yang bersih, responsif, dan mudah digunakan.
 

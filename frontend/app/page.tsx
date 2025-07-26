@@ -69,7 +69,7 @@ export default function HomePage() {
       const imageBlob = await response.blob();
       const imageUrl = URL.createObjectURL(imageBlob);
       setProcessedImage(imageUrl);
-    } catch (err) { // PERBAIKAN: Mengganti 'err: any'
+    } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
       } else {

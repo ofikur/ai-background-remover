@@ -69,9 +69,12 @@ export default function HomePage() {
       const imageBlob = await response.blob();
       const imageUrl = URL.createObjectURL(imageBlob);
       setProcessedImage(imageUrl);
-    } catch (err: any)
-      {
-      setError(err.message || 'Gagal terhubung ke server.');
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('Gagal terhubung ke server atau terjadi kesalahan tak terduga.');
+      }
     } finally {
       setIsLoading(false);
     }

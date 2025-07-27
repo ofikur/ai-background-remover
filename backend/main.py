@@ -12,10 +12,7 @@ if sys.platform == "win32":
 
 app = FastAPI(title="VanishBG Full-Res AI API")
 
-origins = [
-    "http://localhost:3000",
-    "https://vanishbg.vercel.app"
-    ]
+origins = ["http://localhost:3000"]
 
 app.add_middleware(
     CORSMiddleware,

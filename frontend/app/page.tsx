@@ -57,8 +57,7 @@ export default function HomePage() {
     formData.append('file', file);
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
-      const response = await fetch(`${apiUrl}/remove-background/`, {
+      const response = await fetch('http://localhost:8000/remove-background/', {
         method: 'POST',
         body: formData,
       });
@@ -70,12 +69,9 @@ export default function HomePage() {
       const imageBlob = await response.blob();
       const imageUrl = URL.createObjectURL(imageBlob);
       setProcessedImage(imageUrl);
-    } catch (err) {
-      if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError('Terjadi kesalahan yang tidak diketahui.');
-      }
+    } catch (err: any)
+      {
+      setError(err.message || 'Gagal terhubung ke server.');
     } finally {
       setIsLoading(false);
     }
@@ -143,9 +139,7 @@ export default function HomePage() {
             <div className="w-full h-full flex items-center justify-center" style={(processedImage && bgMode === 'transparent') ? transparentBgPattern : { backgroundColor: bgColor }}>
               {isLoading && <div className="border-4 border-slate-400 border-t-rose-500 rounded-full w-16 h-16 animate-spin"></div>}
               {error && <p className="text-center text-red-400">{error}</p>}
-              {processedImage && (
-                <img ref={finalImageRef} src={processedImage} alt="Processed" className="max-h-full max-w-full object-contain" />
-              )}
+              {processedImage && <img ref={finalImageRef} src={processedImage} alt="Processed" className="max-h-full max-w-full object-contain" />}
             </div>
           )}
         </div>
